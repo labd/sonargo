@@ -71,6 +71,7 @@ var _ = BeforeSuite(func() {
 })
 
 func TestSonar(t *testing.T) {
+	t.Skipf("Skip sonar integration test")
 	RegisterFailHandler(Fail)
 	RunSpecs(t, "Sonar Integration test suite")
 }

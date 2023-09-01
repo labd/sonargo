@@ -16,3 +16,5 @@ vendor
 debug
 temp.file
 sonar.coverprofile
+
+/.idea
