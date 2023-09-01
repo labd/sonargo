@@ -19,31 +19,32 @@ Construct a new Sonarqube client, then use the various services on the client to
 ```go
 sonarURL := os.Getenv("SONAR_URL")
 if sonarURL == "" {
-    fmt.Println("Sonar URL has not been set")
-    os.Exit(1)
+fmt.Println("Sonar URL has not been set")
+os.Exit(1)
 }
 client, err := sonargo.NewClient(sonarURL+"/api", "user", "password")
 if err != nil {
-    fmt.Println(err.Error())
-    os.Exit(1)
+fmt.Println(err.Error())
+os.Exit(1)
 }
 //set options
 opt := &ProjectsSearchOption{
-    AnalyzedBefore:    "",
-    OnProvisionedOnly: "",
-    P:                 "",
-    ProjectIds:        "",
-    Projects:          "",
-    Ps:                "",
-    Q:                 "",
-    Qualifiers:        "",
+AnalyzedBefore:    "",
+OnProvisionedOnly: "",
+P:                 "",
+ProjectIds:        "",
+Projects:          "",
+Ps:                "",
+Q:                 "",
+Qualifiers:        "",
 }
 v, _, err := client.Projects.Search(opt)
 if err != nil {
-    fmt.Println(err.Error())
-    os.Exit(1)
+fmt.Println(err.Error())
+os.Exit(1)
 }
 fmt.Print(v.Components[0])
+
 ```
 
 Other services is also like `Projects`, using following steps:
