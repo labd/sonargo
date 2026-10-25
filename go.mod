@@ -1,6 +1,6 @@
 module github.com/labd/sonargo
 
-go 1.25.0
+go 1.27
 
 require (
 	github.com/davecgh/go-spew v1.1.1
