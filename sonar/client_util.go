@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"sort"
@@ -72,7 +71,7 @@ func NewRequest(method, path string, baseURL *url.URL, username, password string
 		bodyReader := bytes.NewReader(bodyBytes)
 
 		u.RawQuery = ""
-		req.Body = ioutil.NopCloser(bodyReader)
+		req.Body = io.NopCloser(bodyReader)
 		req.ContentLength = int64(bodyReader.Len())
 		req.Header.Set("Content-Type", "application/json")
 	}
@@ -108,7 +107,7 @@ func Do(c *http.Client, req *http.Request, v interface{}) (*http.Response, error
 			_, err = io.Copy(w, resp.Body)
 		} else {
 			if isText {
-				byts, err := ioutil.ReadAll(resp.Body)
+				byts, err := io.ReadAll(resp.Body)
 				if err != nil {
 					return resp, err
 				}
@@ -141,7 +140,7 @@ func CheckResponse(r *http.Response) error {
 	}
 
 	errorResponse := &ErrorResponse{Response: r}
-	data, err := ioutil.ReadAll(r.Body)
+	data, err := io.ReadAll(r.Body)
 	if err == nil && data != nil {
 		errorResponse.Body = data
 

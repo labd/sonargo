@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 
 	spew "github.com/davecgh/go-spew/spew"
@@ -34,7 +33,6 @@ func main() {
 	//RulesDeleteFunc()
 	// RulesUpdateFunc()
 	QualityProfilesBackupFunc()
-	return
 }
 
 // CeActivityFunc testing Search for tasks.<br> Requires the system administration permission, or project administration permission if componentId is set.
@@ -510,7 +508,7 @@ func MetricsCreateFunc() {
 		os.Exit(1)
 	}
 	fmt.Println(resp.StatusCode)
-	str, _ := ioutil.ReadAll(resp.Body)
+	str, _ := io.ReadAll(resp.Body)
 	defer resp.Body.Close()
 	fmt.Print(string(str))
 }
@@ -600,7 +598,7 @@ func MetricsUpdateFunc() {
 		os.Exit(1)
 	}
 	fmt.Println(resp.StatusCode)
-	str, _ := ioutil.ReadAll(resp.Body)
+	str, _ := io.ReadAll(resp.Body)
 	fmt.Print(string(str))
 }
 
@@ -2387,7 +2385,7 @@ func UserGroupsSearchFunc() {
 }
 
 func printBody(body io.Reader) {
-	str, _ := ioutil.ReadAll(body)
+	str, _ := io.ReadAll(body)
 	fmt.Print(string(str))
 }
 
